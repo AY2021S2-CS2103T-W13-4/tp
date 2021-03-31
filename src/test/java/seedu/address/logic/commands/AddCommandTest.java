@@ -20,6 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
@@ -119,6 +120,38 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        // ====== Contact ======
+
+        @Override
+        public boolean hasContact(Contact contact) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addContact(Contact contact) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteContact(Contact contact) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setContact(Contact target, Contact otherContact) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Contact> getFilteredContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredContactList(Predicate<Contact> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

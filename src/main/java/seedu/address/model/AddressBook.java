@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.NonOverlappingEntryList;
 import seedu.address.model.person.Person;
@@ -20,6 +22,7 @@ import seedu.address.model.task.UniqueTaskList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final UniqueContactList contacts;
     private final NonOverlappingEntryList entries;
     private final UniquePersonList persons;
     private final UniqueScheduleList schedules;
@@ -33,6 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        contacts = new UniqueContactList();
         entries = new NonOverlappingEntryList();
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
@@ -91,7 +95,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
         setSchedules(newData.getScheduleList());
-        setEntries(newData.getEntryList());
     }
 
     //// person-level operations
@@ -131,7 +134,45 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// entry methods
+    // ====== Contact ======
+
+    /**
+     * Returns true if the contact exists in the list.
+     */
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contacts.contains(contact);
+    }
+
+    /**
+     * Adds a contact to the list.
+     * The contact must not exist in the list.
+     */
+    public void addContact(Contact contact) {
+        requireNonNull(contact);
+        contacts.add(contact);
+    }
+
+    /**
+     * Removes a contact {@code key} from the list.
+     * {@code key} must exist in the list.
+     */
+    public void removeContact(Contact key) {
+        requireNonNull(key);
+        contacts.remove(key);
+    }
+
+    /**
+     * Replaces the given contact {@code target} in the list with {@code editedContact}.
+     * {@code target} must exist in the list.
+     * {@code editedContact} must not exist in the list.
+     */
+    public void setContact(Contact target, Contact editedContact) {
+        requireNonNull(editedContact);
+        contacts.setContact(target, editedContact);
+    }
+
+    // ====== Entry ======
 
     /**
      * Returns true if the entry exists in the list.
@@ -237,6 +278,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Contact> getContactList() {
+        return contacts.asUnmodifiableObservableList();
     }
 
     @Override
