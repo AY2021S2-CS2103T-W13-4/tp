@@ -36,6 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        contacts = new UniqueContactList();
         entries = new NonOverlappingEntryList();
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
@@ -104,7 +105,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
         setSchedules(newData.getScheduleList());
-        setEntries(newData.getEntryList());
     }
 
     //// contact-level operations
@@ -182,7 +182,35 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// entry methods
+    // ====== Contact ======
+
+    /**
+     * Returns true if the contact exists in the list.
+     */
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contacts.contains(contact);
+    }
+
+    /**
+     * Adds a contact to the list.
+     * The contact must not exist in the list.
+     */
+    public void addContact(Contact contact) {
+        requireNonNull(contact);
+        contacts.add(contact);
+    }
+
+    /**
+     * Removes a contact {@code key} from the list.
+     * {@code key} must exist in the list.
+     */
+    public void removeContact(Contact key) {
+        requireNonNull(key);
+        contacts.remove(key);
+    }
+
+    // ====== Entry ======
 
     /**
      * Returns true if the entry exists in the list.

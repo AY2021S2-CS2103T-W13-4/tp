@@ -16,6 +16,9 @@ import seedu.address.model.task.Task;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
+    Predicate<Entry> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
@@ -138,6 +141,25 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    // ====== Contact ======
+
+    /**
+     * Returns true if the contact exists in the list.
+     */
+    boolean hasContact(Contact contact);
+
+    /**
+     * Deletes the given contact.
+     * The contact must exist in the list.
+     */
+    void deleteContact(Contact contact);
+
+    /**
+     * Adds the given contact.
+     * {@code contact} must not exist in the list.
+     */
+    void addContact(Contact contact);
 
     // ====== Entry ======
 

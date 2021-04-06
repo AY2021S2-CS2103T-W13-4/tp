@@ -152,6 +152,32 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    // ====== Contact ======
+
+    /**
+     * checks if {@code contact} is in the list
+     */
+    @Override
+    public boolean hasContact(Contact contact) {
+        return addressBook.hasContact(contact);
+    }
+
+    /**
+     * deletes a {@code Contact} from the list
+     */
+    @Override
+    public void deleteContact(Contact contact) {
+        addressBook.removeContact(contact);
+    }
+
+    /**
+     * adds a {@code Contact} into the list
+     */
+    @Override
+    public void addContact(Contact contact) {
+        addressBook.addContact(contact);
+    }
+
     // ====== Entry ======
 
     /**
