@@ -123,7 +123,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        // ====== Entry ======
+        // ======= Entry =======
 
         @Override
         public boolean hasEntry(Entry entry) {
