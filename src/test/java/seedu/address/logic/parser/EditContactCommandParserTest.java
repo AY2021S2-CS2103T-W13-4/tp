@@ -59,23 +59,32 @@ public class EditContactCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, VALID_NAME_ALICE + INVALID_NAME_DESC, ContactName.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, VALID_NAME_ALICE + INVALID_PHONE_DESC, ContactPhone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, VALID_NAME_ALICE + INVALID_EMAIL_DESC, ContactEmail.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, VALID_NAME_ALICE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + INVALID_NAME_DESC, ContactName.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + INVALID_PHONE_DESC, ContactPhone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + INVALID_EMAIL_DESC, ContactEmail.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, VALID_NAME_ALICE + INVALID_PHONE_DESC + EMAIL_DESC_AMY, ContactPhone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + INVALID_PHONE_DESC + EMAIL_DESC_AMY, ContactPhone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, VALID_NAME_ALICE + PHONE_DESC_BOB + INVALID_PHONE_DESC, ContactPhone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + PHONE_DESC_BOB + INVALID_PHONE_DESC, ContactPhone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Contact} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, VALID_NAME_ALICE + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                VALID_NAME_ALICE + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, VALID_NAME_ALICE + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
@@ -158,8 +167,8 @@ public class EditContactCommandParserTest {
 
         // other valid values specified
         userInput = VALID_NAME_ALICE + EMAIL_DESC_BOB + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        descriptor = new EditContactDescriptorBuilder().withContactPhone(VALID_PHONE_BOB).withContactEmail(VALID_EMAIL_BOB)
-                .build();
+        descriptor = new EditContactDescriptorBuilder()
+                .withContactPhone(VALID_PHONE_BOB).withContactEmail(VALID_EMAIL_BOB).build();
         expectedCommand = new EditContactCommand(FIRST_CONTACT_NAME_ALICE, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

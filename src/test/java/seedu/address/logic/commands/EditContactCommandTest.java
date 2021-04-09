@@ -78,7 +78,8 @@ public class EditContactCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditContactCommand editContactCommand = new EditContactCommand(FIRST_CONTACT_NAME_ALICE, new EditContactDescriptor());
+        EditContactCommand editContactCommand =
+                new EditContactCommand(FIRST_CONTACT_NAME_ALICE, new EditContactDescriptor());
         Contact editedContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
