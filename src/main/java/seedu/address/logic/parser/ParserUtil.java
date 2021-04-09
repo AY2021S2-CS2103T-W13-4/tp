@@ -83,8 +83,8 @@ public class ParserUtil {
     public static ContactName parseContactName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!ContactName.isValidName(trimmedName)) {
+            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
         }
         return new ContactName(trimmedName);
     }
@@ -99,7 +99,7 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!ContactPhone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ContactPhone.MESSAGE_CONSTRAINTS);
         }
         return new ContactPhone(trimmedPhone);
     }
@@ -114,7 +114,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!ContactEmail.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ContactEmail.MESSAGE_CONSTRAINTS);
         }
         return new ContactEmail(trimmedEmail);
     }

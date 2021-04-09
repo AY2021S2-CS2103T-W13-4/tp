@@ -33,6 +33,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_NAME_ALICE = "Alice Pauline";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -65,10 +66,10 @@ public class CommandTestUtil {
     public static final Name INVALID_PERSON_NAME = new Name("John Doe");
     //--------------------------
 
-    public static final ContactName FIRST_CONTACT_NAME = new ContactName("Alice Pauline");
-    public static final ContactName SECOND_CONTACT_NAME = new ContactName("Benson Meier");
-    public static final ContactName LAST_CONTACT_NAME = new ContactName("George Best");
-    public static final ContactName INVALID_CONTACT_NAME = new ContactName("John Doe");
+    public static final ContactName FIRST_CONTACT_NAME_ALICE = new ContactName("Alice Pauline");
+    public static final ContactName SECOND_CONTACT_NAME_BENSON = new ContactName("Benson Meier");
+    public static final ContactName LAST_CONTACT_NAME_GEORGE = new ContactName("George Best");
+    public static final ContactName INVALID_CONTACT_NAME_JOHN = new ContactName("John Doe");
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
