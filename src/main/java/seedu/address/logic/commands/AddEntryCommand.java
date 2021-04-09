@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_ENTRY_END_DATE_IN_PAST;
 import static seedu.address.commons.core.Messages.MESSAGE_OVERLAPPING_ENTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,7 +21,7 @@ public class AddEntryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_START_DATE + "START DATE "
+            + "[" + PREFIX_START_DATE + "START DATE] "
             + PREFIX_END_DATE + "END DATE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -50,10 +49,6 @@ public class AddEntryCommand extends Command {
 
         if (model.isOverlappingEntry(toAdd)) {
             throw new CommandException(MESSAGE_OVERLAPPING_ENTRY);
-        }
-
-        if (toAdd.isOverdue()) {
-            throw new CommandException(MESSAGE_ENTRY_END_DATE_IN_PAST);
         }
 
         model.addEntry(toAdd);
